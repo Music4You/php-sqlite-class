@@ -1,0 +1,35 @@
+<?php
+require_once('sqlite.class.php');
+
+//Opened Database
+$sql = new SQLite('table');
+
+//Send Query
+$sql->Query("INSERT INTO table (`count`) VALUES ('1')");
+
+//Get Values
+$count = $sql->Query("SELECT count FROM table WHERE id=3");//if you will get one value
+echo $count;
+
+$count = $sql->FetchArray("SELECT * FROM table");
+echo $count['count']; //or
+
+$sql->Query("SELECT * FROM table");
+$count = $sql->FetchArray();
+echo $count['count'];
+
+//Get Count of Rows
+echo $count = $sql->RowCount("table");
+
+//Get ID of last Row
+echo $sql->LastInsertID();
+
+//Escape String
+$Escape = $sql->EscapeString("test");
+
+//Get Errorcode
+$error = $sql->GetErrorCode();
+
+//Get Errormessage
+$error = $sql->GetErrorMessage();
+?>
